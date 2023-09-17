@@ -17,4 +17,22 @@
 
 .l{
     margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(234, 242, 248);
+    border: 2px;
+    border-style: solid;
+}
+
+.btn {
+    color: rgb(6, 59, 137);
+}
+
+.btn:hover {
+    color: rgb(129, 160, 205);
+
+}
+.check{
+    color:rgb(102, 67, 23);
+    float: right;
+    padding-right: 80%;
 }
