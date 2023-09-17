@@ -25,14 +25,30 @@
 
 .btn {
     color: rgb(6, 59, 137);
+    margin: 1px;
 }
 
 .btn:hover {
     color: rgb(129, 160, 205);
-
+    margin: 1px;
 }
 .check{
     color:rgb(102, 67, 23);
     float: right;
     padding-right: 80%;
+}
+
+.container{
+    display: grid;
+    grid-gap: 1px;
+    height: 70vh;
+    width: 80vw;
+}
+.item{
+    background-color: rgb(171, 228, 223);
+}
+
+.item:hover{
+    background-color: rgb(122, 183, 178);
+    margin: 3px;
 }
