@@ -1,8 +1,4 @@
-var a = 0;
-function funct() {
-    a++;
-    document.getElementById("clicks").innerHTML = a;
-}
+var x, y;
 
 function changeme(event) {
     var elementId = event.target.id;
@@ -17,8 +13,8 @@ function changeme(event) {
     }
 }
 function creategrid(){
-    let x = document.getElementById("ix").value;
-    let y = document.getElementById("iy").value;
+    x = document.getElementById("ix").value;
+    y = document.getElementById("iy").value;
     let n = 0;
     let container = document.getElementById("container");
     container.innerHTML = "";
@@ -26,9 +22,23 @@ function creategrid(){
     container.style.gridTemplateRows = "repeat(" + y + ", 1fr)";
     for (var rows = 0; rows < y; rows++) {
         for (var columns = 0; columns < x; columns++) {
-            container.innerHTML += '<div class="item item'+ n +'" id="item'+ n + '" onclick="changeme(event)"></div>';
+            container.innerHTML += '<div class="item item'+ rows + '' + columns +'" id="item'+ rows + '' + columns + '" onclick="changeme(event)"></div>';
             n++;
         };
         n++;
     };
+}
+
+function exportgrid(){
+    let s = '';
+    console.clear();
+    for (let i = 0; i < y; i++) {
+        for (let j = 0; j < x; j++) {
+            s += Number((document.getElementById('item'+ i + '' + j).style.backgroundColor == 'rgb(122, 183, 178)'));
+            if (j < x - 1)
+                s += (', ');
+        }
+        s += '\n';
+    }
+    console.log(s);
 }

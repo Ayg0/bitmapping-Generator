@@ -39,10 +39,16 @@
 }
 
 .container{
+    margin: 10px;
     display: grid;
     grid-gap: 1px;
-    height: 70vh;
-    width: 80vw;
+    height: 50vh;
+    width: 50vw;
+}
+
+.input{
+    border-style: solid;
+    border-color: rgb(52, 140, 164);
 }
 .item{
     background-color: rgb(171, 228, 223);
