@@ -14,19 +14,21 @@ function changeme(event) {
 }
 
 function editcontainer(x, y, container) {
+    let size = 40;
     container.innerHTML = "";
     container.style.gridTemplateColumns = "repeat(" + x + ", 1fr)";
     container.style.gridTemplateRows = "repeat(" + y + ", 1fr)";
-    container.style.width = (40 * parseInt(x)) + 'px';
-    container.style.height = (40 * parseInt(y)) + 'px';
+    size /= y / 20;
+    container.style.width = (size * parseInt(x)) + 'px';
+    container.style.height = (size * parseInt(y)) + 'px';
     container.style.borderStyle = "solid";
 }
 
 function creategrid(){
     x = document.getElementById("ix").value;
     y = document.getElementById("iy").value;
-    if (x > 16 || x <= 0 || y > 16 || y < 0){
-        alert("Max is 16 by 16");
+    if (x > 64 || x <= 0 || y > 64 || y < 0){
+        alert("Max is 64 by 64");
         return ;
     }
     let container = document.getElementById("container");
@@ -39,17 +41,28 @@ function creategrid(){
 }
 
 function exportgrid(){
-    let s = '\nbyte custom[] = {\n\tB';
-    let a = ['0', '1'];
+    let s = '\nbyte custom[] = {\n\t';
+    let tmp;
+    let start = 'B';
+    let tohex = document.getElementById("tohex").checked;
+    if (tohex == true)
+        start = '0x';
     console.clear();
     for (let i = 0; i < y; i++) {
+        s += start;
+        tmp = '';
         for (let j = 0; j < x; j++) {
-            s += a[Number((document.getElementById('item'+ i + '-' + j).style.backgroundColor == 'rgb(122, 183, 178)'))];
+            tmp += Number((document.getElementById('item'+ i + '-' + j).style.backgroundColor == 'rgb(122, 183, 178)'));
         }
+        if (tohex == true){
+            tmp = parseInt(tmp, 2).toString(16);
+        }
+        s += tmp;
         if (i == y - 1)
             s += '\n};'
         else
-            s += ',\n\tB';
+            s += ',\n\t';
     }
+    document.getElementById("pre1").style.display = "block";
     document.getElementById("output").innerText = s;
 }

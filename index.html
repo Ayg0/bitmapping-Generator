@@ -18,13 +18,17 @@
     <label for="y">y:</label>
     <input type="text" class="input" id="iy" name="y">
     <button type="button" id="bt1" class="btn" onclick="creategrid()"> Create grid</button>
-    <button type="button" id="bt2" class="btn" onclick="exportgrid()"> export grid</button>
     <div class="container" id="container">
     </div>
-    <pre>
-        <code class="language-c" id="output">
-        </code>
-    </pre>
+    <div class="content">
+        <input type="checkbox" name="tohex" id="tohex">
+        <label for="tohex">Convert To Hex</label>
+        <button type="button" id="bt2" class="btn" onclick="exportgrid()"> export grid</button>
+        <pre class="pre" id="pre1">
+            <code class="language-c" id="output">
+            </code>
+        </pre>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -59,3 +59,14 @@
     background-color: rgb(122, 183, 178);
     margin: 3px;
 }
+
+.pre{
+    display: none;
+    background-color: rgb(246, 228, 205);
+    width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.pre>code{
+    font-size: 16px;
+}
