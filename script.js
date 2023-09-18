@@ -52,5 +52,4 @@ function exportgrid(){
             s += ',\n\tB';
     }
     document.getElementById("output").innerText = s;
-    //console.log(s);
 }
