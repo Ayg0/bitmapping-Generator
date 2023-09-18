@@ -25,6 +25,8 @@ function editcontainer(x, y, container) {
 }
 
 function creategrid(){
+    let s = '';
+
     x = document.getElementById("ix").value;
     y = document.getElementById("iy").value;
     if (x > 64 || x <= 0 || y > 64 || y < 0){
@@ -35,9 +37,10 @@ function creategrid(){
     editcontainer(x, y, container);
     for (var rows = 0; rows < y; rows++) {
         for (var columns = 0; columns < x; columns++) {
-            container.innerHTML += '<div class="item item'+ rows + '-' + columns +'" id="item'+ rows + '-' + columns + '" onclick="changeme(event)"></div>';
+            s += '<div class="item item'+ rows + '-' + columns +'" id="item'+ rows + '-' + columns + '" onclick="changeme(event)"></div>';
         };
     };
+    container.innerHTML = s;
 }
 
 function exportgrid(){
