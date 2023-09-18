@@ -12,33 +12,45 @@ function changeme(event) {
         elementStyle.margin = "3px";
     }
 }
-function creategrid(){
-    x = document.getElementById("ix").value;
-    y = document.getElementById("iy").value;
-    let n = 0;
-    let container = document.getElementById("container");
+
+function editcontainer(x, y, container) {
     container.innerHTML = "";
     container.style.gridTemplateColumns = "repeat(" + x + ", 1fr)";
     container.style.gridTemplateRows = "repeat(" + y + ", 1fr)";
+    container.style.width = (40 * parseInt(x)) + 'px';
+    container.style.height = (40 * parseInt(y)) + 'px';
+    container.style.borderStyle = "solid";
+}
+
+function creategrid(){
+    x = document.getElementById("ix").value;
+    y = document.getElementById("iy").value;
+    if (x > 16 || x <= 0 || y > 16 || y < 0){
+        alert("Max is 16 by 16");
+        return ;
+    }
+    let container = document.getElementById("container");
+    editcontainer(x, y, container);
     for (var rows = 0; rows < y; rows++) {
         for (var columns = 0; columns < x; columns++) {
-            container.innerHTML += '<div class="item item'+ rows + '' + columns +'" id="item'+ rows + '' + columns + '" onclick="changeme(event)"></div>';
-            n++;
+            container.innerHTML += '<div class="item item'+ rows + '-' + columns +'" id="item'+ rows + '-' + columns + '" onclick="changeme(event)"></div>';
         };
-        n++;
     };
 }
 
 function exportgrid(){
-    let s = '';
+    let s = '\nbyte custom[] = {\n\tB';
+    let a = ['0', '1'];
     console.clear();
     for (let i = 0; i < y; i++) {
         for (let j = 0; j < x; j++) {
-            s += Number((document.getElementById('item'+ i + '' + j).style.backgroundColor == 'rgb(122, 183, 178)'));
-            if (j < x - 1)
-                s += (', ');
+            s += a[Number((document.getElementById('item'+ i + '-' + j).style.backgroundColor == 'rgb(122, 183, 178)'))];
         }
-        s += '\n';
+        if (i == y - 1)
+            s += '\n};'
+        else
+            s += ',\n\tB';
     }
-    console.log(s);
+    document.getElementById("output").innerText = s;
+    //console.log(s);
 }
