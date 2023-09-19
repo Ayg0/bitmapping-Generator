@@ -58,7 +58,7 @@ function exportgrid(){
             tmp += Number((document.getElementById('item'+ i + '-' + j).style.backgroundColor == 'rgb(122, 183, 178)'));
         }
         if (tohex == true){
-            tmp = parseInt(tmp, 2).toString(16);
+            tmp = parseInt(tmp, 2).toString(16).toUpperCase();
         }
         s += tmp;
         if (i == y - 1)
