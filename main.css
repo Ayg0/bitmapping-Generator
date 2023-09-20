@@ -1,41 +1,33 @@
-.h {
-    color:rgb(52, 66, 79);
-    font-size: 40px;
-    border: 10px;
-    border-style: dashed;
-    border-color:rgb(157, 81, 95);
-
+body{
+    margin: 0px;
+    padding: 0px;
 }
-.h:hover {
-    color:rgb(52, 66, 79);
-    font-size: 40px;
-    border: 10px;
-    border-style: dashed;
-    border-color:rgb(70, 103, 103);
+.header{
+    background-color: rgb(129, 160, 205);
     padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.header>h1{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    padding-bottom: 5px;
 }
 
-.l{
-    margin-top: 20px;
-    padding: 20px;
-    background-color: rgb(234, 242, 248);
-    border: 2px;
-    border-style: solid;
+.creation{
+    margin: 10px;
 }
-
 .btn {
     color: rgb(6, 59, 137);
-    margin: 1px;
+    margin: 5px;
 }
 
 .btn:hover {
     color: rgb(129, 160, 205);
-    margin: 1px;
-}
-.check{
-    color:rgb(102, 67, 23);
-    float: right;
-    padding-right: 80%;
 }
 
 .container{
@@ -66,6 +58,7 @@
     width: 900px;
     padding: 20px;
     border-radius: 10px;
+    overflow: scroll;
 }
 .pre>code{
     font-size: 16px;
