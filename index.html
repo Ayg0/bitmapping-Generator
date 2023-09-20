@@ -20,8 +20,16 @@
     <div class="container" id="container">
     </div>
     <div class="content">
-        <input type="checkbox" name="tohex" id="tohex">
-        <label for="tohex">Convert To Hex</label>
+        <div class="check-boxs">
+            <input type="checkbox" name="tohex" id="tohex" onchange="exportgrid()">
+            <label for="tohex">Convert To Hex</label><br>
+            <input type="checkbox" name="reverse-v" id="reverse-v" onchange="exportgrid()">
+            <label for="reverse-v">Vertical Reverse</label><br>
+            <input type="checkbox" name="reverse-h" id="reverse-h" onchange="exportgrid()">
+            <label for="reverse-h">Horizontal Reverse</label><br>
+            <input type="checkbox" name="nl" id="nl" onchange="exportgrid()">
+            <label for="nl">Remove New Line</label><br>
+        </div>
         <button type="button" id="bt2" class="btn" onclick="exportgrid()"> export grid</button>
         <pre class="pre" id="pre1">
             <code class="language-c" id="output">

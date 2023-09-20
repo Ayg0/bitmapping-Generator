@@ -1,14 +1,16 @@
 var x, y;
+let active_color = "rgb(122, 183, 178)";
+let unactive_color = "rgb(171, 228, 223)";
 
 function changeme(event) {
     var elementId = event.target.id;
     let elementStyle = document.getElementById(elementId).style;
-    if (elementStyle.backgroundColor == "rgb(122, 183, 178)"){
-        elementStyle.backgroundColor = "rgb(171, 228, 223)";
+    if (elementStyle.backgroundColor == active_color){
+        elementStyle.backgroundColor = unactive_color;
         elementStyle.margin = "0px";
     }
     else{
-        elementStyle.backgroundColor = "rgb(122, 183, 178)";
+        elementStyle.backgroundColor = active_color;
         elementStyle.margin = "3px";
     }
 }
@@ -43,29 +45,58 @@ function creategrid(){
     container.innerHTML = s;
 }
 
-function exportgrid(){
-    let s = '\nbyte custom[] = {\n\t';
+function linestart(flag) {
+    if (flag)
+        return "0x";
+    return "B";    
+}
+
+function get_item_background(item){
+    return document.getElementById(item).style.backgroundColor;
+}
+
+function get_output(output, hex, reverse_h, reverse_v, nl){
     let tmp;
+    let v   = [0, y, 1];
+    let h   = [0, x, 1];
     let start = 'B';
-    let tohex = document.getElementById("tohex").checked;
-    if (tohex == true)
+    let separator = '\n\t';
+
+    if (reverse_v)
+        v[0] = y - 1, v[1] = -1, v[2] = -1;
+    if (reverse_h)
+        h[0] = x - 1, h[1] = -1, h[2] = -1;
+    if (hex)
         start = '0x';
-    console.clear();
-    for (let i = 0; i < y; i++) {
-        s += start;
+    if (nl)
+        separator = ' ';
+    for (let i = v[0]; i != v[1]; i += v[2]) {
+        output += start;
         tmp = '';
-        for (let j = 0; j < x; j++) {
-            tmp += Number((document.getElementById('item'+ i + '-' + j).style.backgroundColor == 'rgb(122, 183, 178)'));
+        for (let j = h[0]; j != h[1]; j += h[2]){
+            tmp += Number(get_item_background('item'+ i + '-' + j) == active_color);
         }
-        if (tohex == true){
+        if (hex)
             tmp = parseInt(tmp, 2).toString(16).toUpperCase();
-        }
-        s += tmp;
-        if (i == y - 1)
-            s += '\n};'
+        if (i == (v[1] - v[2]))
+            tmp += '};';
         else
-            s += ',\n\t';
+            tmp += ',' + separator;
+        output += tmp;
     }
+    return (output);
+}
+
+
+function exportgrid(){
+    let output = '\nbyte custom[] = {\n\t';
+    let hex = document.getElementById("tohex").checked;
+    let nl = document.getElementById("nl").checked;
+    let reverse_h = document.getElementById("reverse-h").checked;
+    let reverse_v = document.getElementById("reverse-v").checked; 
+
+    console.clear();
+    output = get_output(output, hex, reverse_h, reverse_v, nl);
     document.getElementById("pre1").style.display = "block";
-    document.getElementById("output").innerText = s;
+    document.getElementById("output").innerText = output;
 }
