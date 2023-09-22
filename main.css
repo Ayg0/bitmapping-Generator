@@ -2,11 +2,13 @@ body{
     margin: 0px;
     padding: 0px;
 }
+
 .header{
     background-color: rgb(102, 128, 167);
     padding: 5px;
     margin-bottom: 5px;
 }
+
 .header>h1{
     padding: 0;
     margin: 0;
