@@ -77,7 +77,7 @@ function get_output(output, hex, reverse_h, reverse_v, nl){
             tmp += Number(get_item_background('item'+ i + '-' + j) == active_color);
         }
         if (hex)
-            tmp = parseInt(tmp, 2).toString(16).toUpperCase();
+            tmp = parseInt(tmp, 2).toString(16).padStart(2, '0').toUpperCase();
         if (i == (v[1] - v[2]))
             tmp += '};';
         else
